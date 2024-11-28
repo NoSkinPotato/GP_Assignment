@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -11,15 +13,49 @@ public class PlayerMovement : MonoBehaviour
     public Animator animator;
     public SpriteRenderer spriteRenderer;
     private LogicManager manager;
+    public float health = 10;
+    public Slider healthBar;
+
+    public bool onCow = false;
+
+    public static PlayerMovement Instance { get; private set; }
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     private void Start()
     {
         manager = LogicManager.Instance;
         Time.timeScale = 1;
+
+        healthBar.maxValue = (int)health;
+        healthBar.value = (int)health;
     }
 
     void Update()
     {
+
+        if (onCow)
+        {
+            health -= Time.deltaTime;
+
+            if (health <= 0)
+            {
+                LogicManager.Instance.EndGame(false);
+            }
+        }
+        
+
+        healthBar.value = (int)health;
 
         horizontal = Input.GetAxisRaw("Horizontal");
         vertical = Input.GetAxisRaw("Vertical");
@@ -42,6 +78,9 @@ public class PlayerMovement : MonoBehaviour
             spriteRenderer.flipX = false;
         }
         
+
+
+
     }
 
     private void FixedUpdate()
@@ -74,6 +113,16 @@ public class PlayerMovement : MonoBehaviour
         animator.SetBool("Attack", false);
     }
 
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            onCow = false;
+
+        }
+    }
+
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -100,6 +149,12 @@ public class PlayerMovement : MonoBehaviour
 
                 Destroy(script.gameObject);
             }
+        }
+        
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            onCow = true;
+
         }
     }
 }

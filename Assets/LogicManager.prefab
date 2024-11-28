@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2909175140363911291
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4907174625715546073}
+  - component: {fileID: 8332328759995186379}
+  m_Layer: 0
+  m_Name: LogicManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4907174625715546073
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2909175140363911291}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.8978087, y: 1.1087698, z: 0.047800597}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8332328759995186379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2909175140363911291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a937a0682a2bc2946a04334df627629c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wheatCurrText: {fileID: 0}
+  wheatTargetText: {fileID: 0}
+  tomatoCurrText: {fileID: 0}
+  tomatoTargetText: {fileID: 0}
+  screenLayer: {fileID: 0}
+  failColor: {r: 1, g: 0.52494174, b: 0, a: 1}
+  successColor: {r: 0, g: 1, b: 0.72778845, a: 1}
+  screenText: {fileID: 0}
+  screenBG: {fileID: 0}
+  wheat: 0
+  tomato: 0
+  targetWheat: 3
+  targetTomato: 3

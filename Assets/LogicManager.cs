@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class LogicManager : MonoBehaviour
 {
@@ -14,6 +15,10 @@ public class LogicManager : MonoBehaviour
     public TextMeshProUGUI tomatoTargetText;
 
     public GameObject screenLayer;
+    public Color failColor;
+    public Color successColor;
+    public TextMeshProUGUI screenText;
+    public Image screenBG;
 
     public int wheat, tomato;
 
@@ -35,10 +40,25 @@ public class LogicManager : MonoBehaviour
     {
         if (wheat >= targetWheat && tomato >= targetTomato) {
 
-            screenLayer.SetActive(true);
-            Time.timeScale = 0;
+            
+            EndGame(true);
         
         }
+    }
+
+    public void EndGame(bool win)
+    {
+        if (win) {
+            screenBG.color = successColor;
+            screenText.text = "Congratulations, you won";
+        }
+        else
+        {
+            screenBG.color = failColor;
+            screenText.text = "Sorry, you failed";
+        }
+        screenLayer.SetActive(true);
+        Time.timeScale = 0;
     }
 
     public void restartGame()
