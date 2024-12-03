@@ -18,6 +18,9 @@ public class PlayerMovement : MonoBehaviour
 
     public bool onCow = false;
 
+    bool onRadio = false;
+    RadioScript rs;
+
     public static PlayerMovement Instance { get; private set; }
 
     private void Awake()
@@ -79,7 +82,10 @@ public class PlayerMovement : MonoBehaviour
         }
         
 
-
+        if (onRadio && Input.GetKeyDown(KeyCode.F))
+        {
+            rs.SetMusic();
+        }
 
     }
 
@@ -113,6 +119,27 @@ public class PlayerMovement : MonoBehaviour
         animator.SetBool("Attack", false);
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.name.Equals("Radio"))
+        {
+            rs = collision.gameObject.GetComponent<RadioScript>();
+            rs.SetInput(true);
+            onRadio = true;
+        }
+    }
+
+
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.name.Equals("Radio"))
+        {
+            rs.SetInput(false);
+            onRadio = false;
+        }
+    }
+
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Enemy"))
@@ -121,8 +148,6 @@ public class PlayerMovement : MonoBehaviour
 
         }
     }
-
-
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -156,5 +181,8 @@ public class PlayerMovement : MonoBehaviour
             onCow = true;
 
         }
+    
     }
+
+
 }

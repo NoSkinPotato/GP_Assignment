@@ -35,15 +35,11 @@ public class MainMenuScript : MonoBehaviour
     }
 
 
-    public void StartLevel1()
+    public void StartLevel1(int x)
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(x);
     }
 
-    public void StartLevel2()
-    {
-        SceneManager.LoadScene(2);
-    }
 
     public void ExitGame()
     {
